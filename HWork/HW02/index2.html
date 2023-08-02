@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h2>Products list:</h2>
+            <ul>
+                <li v-for="product in sortedProducts" :key="product.name">{{ product.name }} - {{product.price}}$
+                </li>
+            </ul>
+            <button @click="sortProducts('asc')">По возрастанию цены</button>
+            <button @click="sortProducts('desc')">По убыванию цены</button>
+        </div>
+    </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
