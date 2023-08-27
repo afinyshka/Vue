@@ -213,7 +213,6 @@ export default {
 .project-card
     position: relative
     width: 55rem
-
     &__img
         margin-bottom: 2.8rem
     &__subheading

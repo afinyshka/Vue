@@ -2,19 +2,22 @@
     <blogDetails />
     <blogComponent />
     <indexComponent />
+    <OurProjectComponent />
 </template>
 
 <script>
 import blogDetails from './components/blogDetails.vue'
 import blogComponent from './components/blogComponent.vue'
 import indexComponent from './components/indexComponent.vue'
+import OurProjectComponent from './components/ourProjectComponent.vue';
 
 export default {
     name: 'App',
     components: {
         blogDetails,
         blogComponent,
-        indexComponent
+        indexComponent,
+        OurProjectComponent
     }
 }
 </script>
@@ -78,6 +81,9 @@ html
 
 .m-b-54
     margin-bottom: 5.4rem
+
+.m-b-61
+    margin-bottom: 6.1rem
 
 .m-b-93
     margin-bottom: 9.3rem

@@ -50,34 +50,20 @@
             </div>
         </div>
     </section>
-    <div class="pagination center m-b-200">
-        <button class="pagination__prev-btn"><svg xmlns="http://www.w3.org/2000/svg" width="53" height="52"
-                viewBox="0 0 53 52" fill="none">
-                <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274" />
-                <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="#292F36" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg></button>
-        <span class="pagination__page-num pagination__page-num_active">01</span>
-        <span class="pagination__page-num">02</span>
-        <span class="pagination__page-num">03</span>
-        <button class="pagination__next-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
-                <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274" />
-                <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="#292F36" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg></button>
-    </div>
+    <paginationComponent class="center m-b-200" />
     <footerComponent />
 </template>
 
 <script>
 import headerComponent from './headerComponent.vue'
+import paginationComponent from './paginationComponent.vue'
 import footerComponent from './footerComponent.vue'
 
 export default {
     components: {
         headerComponent,
-        footerComponent
+        paginationComponent,
+        footerComponent,
     },
     data() {
         return {
@@ -211,7 +197,6 @@ export default {
         flex-shrink: 0
         border-radius: 50%
         border: none
-        flex-shrink: 0
         position: absolute
         right: 2.1rem
         bottom: 3.8rem
