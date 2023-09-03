@@ -1,23 +1,26 @@
 <template>
-    <blogDetails />
-    <blogComponent />
-    <indexComponent />
-    <OurProjectComponent />
+    <blogDetailsPage />
+    <blogPage />
+    <indexPage />
+    <ourProjectPage />
+    <projectDetailsPage />
 </template>
 
 <script>
-import blogDetails from './components/blogDetails.vue'
-import blogComponent from './components/blogComponent.vue'
-import indexComponent from './components/indexComponent.vue'
-import OurProjectComponent from './components/ourProjectComponent.vue';
+import blogDetailsPage from './components/blogDetailsPage.vue'
+import blogPage from './components/blogPage.vue'
+import indexPage from './components/indexPage.vue'
+import ourProjectPage from './components/ourProjectPage.vue'
+import projectDetailsPage from './components/projectDetailsPage.vue'
 
 export default {
     name: 'App',
     components: {
-        blogDetails,
-        blogComponent,
-        indexComponent,
-        OurProjectComponent
+        blogDetailsPage,
+        blogPage,
+        indexPage,
+        ourProjectPage,
+        projectDetailsPage,
     }
 }
 </script>
@@ -90,6 +93,9 @@ html
 
 .m-b-96
     margin-bottom: 9.6rem
+
+.m-b-100
+    margin-bottom: 10rem
 
 .m-b-150
     margin-bottom: 15rem
