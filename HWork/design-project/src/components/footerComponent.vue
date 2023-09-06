@@ -12,9 +12,10 @@
         </div>
         <div class="footer__item">
             <h3 class="footer__subheading">Pages</h3>
-            <a href="index.html" class="footer__text footer__link">Home</a>
-            <a href="project.html" class="footer__text  footer__link">Project</a>
-            <a href="blog.html" class="footer__text footer__link">Blog</a>
+            <router-link class="footer__text footer__link" v-for="headerLink in headerLinks" :key="headerLink.id"
+                :to="headerLink.url">{{
+                    headerLink.title
+                }}</router-link>
         </div>
         <div class="footer__item">
             <h3 class="footer__subheading">Services</h3>
@@ -33,9 +34,14 @@
 
 <script>
 import logoComponent from "./logoComponent.vue"
+import { mapState } from 'vuex'
+
 export default {
     components: {
         logoComponent,
+    },
+    computed: {
+        ...mapState(['headerLinks']),
     },
 }
 </script>
@@ -63,7 +69,6 @@ export default {
         &:active, &:visited
             color: #292F36
         &:hover
-            // transform: scale(1.2)
             color: #CDA274
 
     &__links

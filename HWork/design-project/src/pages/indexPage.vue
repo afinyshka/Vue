@@ -1,5 +1,4 @@
 <template>
-    <headerComponent />
     <section class="intro center m-b-96">
         <img class="intro__img" src="@/assets/image/intro_photo.png" alt="interior picture">
         <div class="intro__wrap">
@@ -7,14 +6,14 @@
                 Be Unique</h1>
             <p class="intro__text">There are many variations of the passages of
                 lorem Ipsum fromavailable, majority.</p>
-            <button class="intro__btn">Get Started
+            <router-link :to="{ path: '/', hash: '#my-section' }" class="intro__btn" v-scroll-to="'#my-section'">Get Started
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17" fill="none">
                     <path d="M2 8.43542L15.7232 8.29857M10.6182 1.91138L17.1412 8.43436L10.4868 15.0887" stroke="#CDA274"
                         stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
-                </svg></button>
+                </svg></router-link>
         </div>
     </section>
-    <section class="project center m-b-96">
+    <section id="my-section" class="project center m-b-96">
         <h2 class="heading m-b-08">Follow Our Projects</h2>
         <p class="subtext subtext_center subtext_width m-b-93">It is a long established fact that a reader will be
             distracted by the of
@@ -132,18 +131,11 @@
             </div>
         </div>
     </section>
-    <footerComponent />
 </template>
 
 <script>
-import headerComponent from './headerComponent.vue'
-import footerComponent from './footerComponent.vue'
 
 export default {
-    components: {
-        headerComponent,
-        footerComponent
-    },
 }
 
 </script>
@@ -199,6 +191,7 @@ export default {
         font-weight: 600
         line-height: 2.25rem
         letter-spacing: 0.036rem
+        text-decoration: none
 
         border-radius: 1.8rem
         background: #292F36

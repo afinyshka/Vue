@@ -210,6 +210,23 @@ export default createStore({
         tag: 'Living Area',
       },
     ],
+    headerLinks: [
+      {
+        id: 1,
+        title: 'Home',
+        url: '/',
+      },
+      {
+        id: 2,
+        title: 'Project',
+        url: '/project',
+      },
+      {
+        id: 3,
+        title: 'Blog',
+        url: '/blog',
+      },
+    ],
   },
   mutations: {
     SET_SELECTED_BLOCK_SORT_AREA(state, area) {

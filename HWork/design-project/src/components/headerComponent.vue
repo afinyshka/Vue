@@ -1,20 +1,24 @@
 <template>
     <header class="header center">
         <logoComponent />
-        <div class="header__menu">
-            <a href="index.html" class="menu__link">Home</a>
-            <a href="project.html" class="menu__link">Project</a>
-            <a href="blog.html" class="menu__link">Blog</a>
-        </div>
+        <nav class="header__menu">
+            <router-link class="menu__link" v-for="headerLink in headerLinks" :key="headerLink.id" :to="headerLink.url">{{
+                headerLink.title
+            }}</router-link>
+        </nav>
     </header>
 </template>
  
 <script>
 import logoComponent from './logoComponent.vue'
+import { mapState } from 'vuex'
 
 export default {
     components: {
         logoComponent,
+    },
+    computed: {
+        ...mapState(['headerLinks']),
     },
 }
 </script>
@@ -42,5 +46,7 @@ export default {
     &__link
         color: inherit
         text-decoration: none
+        &:hover
+            color: #CDA274
 </style>
   

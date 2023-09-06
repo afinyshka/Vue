@@ -2,10 +2,8 @@
   <div class="info-articles__tags">
     <h3 class="subheading m-b-24">Tags</h3>
     <div class="tags">
-      <!-- <div class="subtext tags__btn tags__btn_active">Kitchen</div> -->
       <button v-for="btnTag in btnTags" :key="btnTag.id" class="subtext tags__btn" @click="selectTag(btnTag)"
         :class="{ 'tags__btn_active': selectedTag === btnTag }"> {{ btnTag }}</button>
-      <!-- <p class="subtext">{{ selectedTag }}</p> -->
     </div>
   </div>
 </template>
@@ -18,7 +16,7 @@ export default {
   data() {
     return {
       btnTags: ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom'],
-      selectedTag: null,
+      // selectedTag: null,
     }
   },
   methods: {

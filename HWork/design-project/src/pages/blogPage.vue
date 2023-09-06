@@ -1,5 +1,4 @@
 <template>
-    <headerComponent />
     <section class="articles m-b-200">
         <img src="@/assets/image/Photo-blog.png" alt="interior photo" class="articles__img">
         <div class="articles__wrap">
@@ -25,12 +24,12 @@
                     piece of
                     classica.</p>
                 <p class="date-text">26 December, 2022</p>
-                <button class="news-card__btn">
+                <router-link to="/blog-details" class="news-card__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
                         <circle cx="26" cy="26.267" r="26" fill="#F4F0EC" />
                         <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></button>
+                    </svg></router-link>
             </div>
         </div>
     </section>
@@ -41,29 +40,24 @@
                 <img :src="require(`@/assets/${newsCard.img}`)" alt="interior" class="news-card__img">
                 <h3 class="news-card__subheading"> {{ newsCard.header }} </h3>
                 <p class="date-text">{{ newsCard.date }}</p>
-                <button class="news-card__btn">
+                <router-link to="/blog-details" class="news-card__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
-                        <circle cx="26" cy="26.267" r="26" fill="#F4F0EC" />
+                        <circle class="news-card__circle" cx="26" cy="26.267" r="26" fill="#F4F0EC" />
                         <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></button>
+                    </svg></router-link>
             </div>
         </div>
     </section>
     <paginationComponent class="center m-b-200" />
-    <footerComponent />
 </template>
 
 <script>
-import headerComponent from './headerComponent.vue'
-import paginationComponent from './paginationComponent.vue'
-import footerComponent from './footerComponent.vue'
+import paginationComponent from '../components/paginationComponent.vue'
 
 export default {
     components: {
-        headerComponent,
         paginationComponent,
-        footerComponent,
     },
     data() {
         return {
@@ -177,6 +171,8 @@ export default {
     box-shadow: 0px 10px 30px 0px rgba(255, 255, 255, 0.25)
     &:nth-child(2)
         background: #F4F0EC
+    &:nth-child(2) svg circle
+        fill: #fff
     &__img
         margin-bottom: 0.6rem
         border-top-left-radius: 4.1rem
@@ -200,6 +196,8 @@ export default {
         position: absolute
         right: 2.1rem
         bottom: 3.8rem
+
+            
 
 .pagination
     display: flex

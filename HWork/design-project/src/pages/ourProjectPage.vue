@@ -26,13 +26,13 @@
                     <img :src="require(`@/assets/${card.img}`)" alt="interior" class="project-card__img">
                     <h3 class="project-card__subheading">{{ card.title }}</h3>
                     <p class="project-card__text">{{ card.text }}</p>
-                    <button class="project-card__btn">
+                    <router-link to="/project-details" class="project-card__btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
                             <circle cx="35" cy="35" r="35" fill="#F4F0EC" />
                             <path d="M32 44L40 35L32 26" stroke="#292F36" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                    </button>
+                    </router-link>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions, createLogger } from 'vuex'
-import paginationComponent from './paginationComponent.vue'
+import paginationComponent from '../components/paginationComponent.vue'
 
 export default {
     components: {
