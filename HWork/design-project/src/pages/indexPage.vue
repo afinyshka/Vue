@@ -20,49 +20,16 @@
             readable
             content of page lookings at its layouts points.</p>
         <div class="project__cards">
-            <div class="project-card">
-                <img src="@/assets/image/Photo-1.png" alt="interior" class="project-card__img">
-                <h3 class="project-card__subheading">Modern Kitchan</h3>
-                <p class="project-card__text">Decor / Artchitecture</p>
-                <button class="project-card__btn">
+            <div v-for="projectCard in  projectCards " :key="projectCard.id" class="project-card">
+                <img :src="require(`@/assets/image/${projectCard.img}`)" alt="interior" class="project-card__img">
+                <h3 class="project-card__subheading">{{ projectCard.header }}</h3>
+                <p class="project-card__text">{{ projectCard.breadcrumps }}</p>
+                <router-link to="/project-details" class="project-card__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
                         <circle cx="35" cy="35" r="35" fill="#F4F0EC" />
                         <path d="M32 44L40 35L32 26" stroke="#292F36" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
-                    </svg></button>
-            </div>
-            <div class="project-card">
-                <img src="@/assets/image/Photo-2.png" alt="interior" class="project-card__img">
-                <h3 class="project-card__subheading">Modern Kitchan</h3>
-                <p class="project-card__text">Decor / Artchitecture</p>
-                <button class="project-card__btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
-                        <circle cx="35" cy="35" r="35" fill="#F4F0EC" />
-                        <path d="M32 44L40 35L32 26" stroke="#292F36" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg></button>
-            </div>
-            <div class="project-card">
-                <img src="@/assets/image/Photo-3.png" alt="interior" class="project-card__img">
-                <h3 class="project-card__subheading">Modern Kitchan</h3>
-                <p class="project-card__text">Decor / Artchitecture</p>
-                <button class="project-card__btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
-                        <circle cx="35" cy="35" r="35" fill="#F4F0EC" />
-                        <path d="M32 44L40 35L32 26" stroke="#292F36" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg></button>
-            </div>
-            <div class="project-card">
-                <img src="@/assets/image/Photo-4.png" alt="interior" class="project-card__img">
-                <h3 class="project-card__subheading">Modern Kitchan</h3>
-                <p class="project-card__text">Decor / Artchitecture</p>
-                <button class="project-card__btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
-                        <circle cx="35" cy="35" r="35" fill="#F4F0EC" />
-                        <path d="M32 44L40 35L32 26" stroke="#292F36" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg></button>
+                    </svg></router-link>
             </div>
         </div>
 
@@ -94,50 +61,66 @@
             content of
             a page when lookings at its layouts the points of using.</p>
         <div class="news__cards">
-            <div class="news-card">
-                <img src="@/assets/image/Photo_articles_1.png" alt="interior" class="news-card__img">
-                <h3 class="news-card__subheading">Let’s Get Solution For Building Construction Work</h3>
-                <p class="date-text">26 December, 2022</p>
-                <button class="news-card__btn">
+            <div v-for="newsCard in newsCards" :key="newsCard.id" class="news-card">
+                <img :src="require(`@/assets/image/${newsCard.img}`)" alt="interior" class="news-card__img">
+                <h3 class="news-card__subheading"> {{ newsCard.header }} </h3>
+                <p class="date-text">{{ newsCard.date }}</p>
+                <router-link to="/blog-details" class="news-card__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
-                        <circle cx="26" cy="26.267" r="26" fill="#F4F0EC" />
+                        <circle class="news-card__circle" cx="26" cy="26.267" r="26" fill="#F4F0EC" />
                         <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></button>
-            </div>
-            <div class="news-card">
-                <img src="@/assets/image/Photo_articles_2.png" alt="interior" class="news-card__img">
-                <h3 class="news-card__subheading">Low Cost Latest Invented Interior Designing<br>
-                    Ideas.</h3>
-                <p class="date-text">22 December, 2022</p>
-                <button class="news-card__btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
-                        <circle cx="26" cy="26.267" r="26" fill="white" />
-                        <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></button>
-            </div>
-            <div class="news-card">
-                <img src="@/assets/image/Photo_articles_3.png" alt="interior" class="news-card__img">
-                <h3 class="news-card__subheading">Best For Any Office & Business Interior
-                    Solution</h3>
-                <p class="date-text">25 December, 2022</p>
-                <button class="news-card__btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
-                        <circle cx="26" cy="26.267" r="26" fill="#F4F0EC" />
-                        <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg></button>
+                    </svg></router-link>
             </div>
         </div>
     </section>
 </template>
 
 <script>
-
 export default {
-}
 
+    data() {
+        return {
+            projectCards: [
+                {
+                    img: 'Photo-1.png',
+                    header: 'Modern Kitchan',
+                    breadcrumps: 'Decor / Artchitecture',
+                }, {
+                    img: 'Photo-2.png',
+                    header: 'Modern Kitchan',
+                    breadcrumps: 'Decor / Artchitecture',
+                }, {
+                    img: 'Photo-3.png',
+                    header: 'Modern Kitchan',
+                    breadcrumps: 'Decor / Artchitecture',
+                },
+                {
+                    img: 'Photo-4.png',
+                    header: 'Modern Kitchan',
+                    breadcrumps: 'Decor / Artchitecture',
+                },
+            ],
+            newsCards: [
+                {
+                    img: 'Photo_articles_1.png',
+                    header: 'Let’s Get Solution For Building Construction Work',
+                    date: '26 December, 2022',
+                },
+                {
+                    img: 'Photo_articles_2.png',
+                    header: 'Low Cost Latest Invented Interior Designing Ideas.',
+                    date: '22 December, 2022',
+                },
+                {
+                    img: 'Photo_articles_3.png',
+                    header: 'Best For Any Office & Business Interior Solution',
+                    date: '25 December, 2022',
+                },
+            ],
+        }
+    },
+}
 </script>
 
 <style scoped lang="sass">
@@ -195,7 +178,12 @@ export default {
 
         border-radius: 1.8rem
         background: #292F36
-        box-shadow: 0px 10px 20px 0px rgba(192, 192, 192, 0.35)
+        box-shadow: 0rem 1rem 2rem 0rem rgba(192, 192, 192, 0.35)
+        transition: all 0.3s ease-in-out
+        &:hover
+            transform: scale(1.02)
+            box-shadow: 0.7rem 0.7rem 1.3rem 0rem #4d5053a8
+
 
 .project
     &__cards
@@ -234,6 +222,9 @@ export default {
         position: absolute
         right: 0
         bottom: 0
+        transition: transform 0.3s ease-in-out
+        &:hover
+            transform: scale(1.1)
 
     &:nth-child(4n+1) .project-card__img
         border-top-right-radius: 8rem
@@ -305,6 +296,8 @@ export default {
     box-shadow: 0px 10px 30px 0px rgba(255, 255, 255, 0.25)
     &:nth-child(2)
         background: #F4F0EC
+    &:nth-child(2) svg circle
+        fill: #fff
     &__img
         margin-bottom: 0.6rem
         border-top-left-radius: 4.1rem
@@ -329,4 +322,7 @@ export default {
         position: absolute
         right: 2.1rem
         bottom: 3.8rem
+        transition: transform 0.3s ease-in-out
+        &:hover
+            transform: scale(1.1)
 </style>

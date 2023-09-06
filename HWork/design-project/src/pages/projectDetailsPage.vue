@@ -91,14 +91,17 @@ export default {
         border-radius: 7rem
         width: 100%
         height: 80rem
+        overflow: hidden
     &__img
         width: 100%
         height: 100%
         border-radius: 7rem
-
-.swiper-slide 
-    overflow: hidden
-    &-hidden
         object-fit: cover
+
+
+// .swiper-slide 
+    // overflow: hidden
+    // &-hidden
+        // object-fit: cover
 
 </style>

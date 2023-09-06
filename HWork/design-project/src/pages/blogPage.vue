@@ -4,8 +4,8 @@
         <div class="articles__wrap">
             <h2 class="heading m-b-12">Articles & News</h2>
             <div class="breadcrump">
-                <a href="../index.html" class="breadcrump__item">Home</a>
-                <a href="#" class="breadcrump__item">Blog</a>
+                <router-link to="/" class="breadcrump__item">Home</router-link>
+                <router-link to="/blog" class="breadcrump__item">Blog</router-link>
             </div>
         </div>
     </section>
@@ -196,6 +196,9 @@ export default {
         position: absolute
         right: 2.1rem
         bottom: 3.8rem
+        transition: transform 0.3s ease-in-out
+        &:hover
+            transform: scale(1.1)
 
             
 

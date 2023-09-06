@@ -227,14 +227,18 @@ export default createStore({
         url: '/blog',
       },
     ],
+    selectedTag: null,
   },
   mutations: {
     SET_SELECTED_BLOCK_SORT_AREA(state, area) {
       state.selectedBlockSortArea = area
     },
     SET_ExtraProjectCardClass(state, payload) {
-      state.extraProjectCardClasses = payload;
-    }
+      state.extraProjectCardClasses = payload
+    },
+    SET_SELECTED_TAG(state, tag) {
+      state.selectedTag = tag
+    },
   },
   getters: {
     getFilteredCards: state => {
@@ -242,11 +246,15 @@ export default createStore({
         return state.cards
       }
       return state.cards.filter(card => card.tag.includes(state.selectedBlockSortArea))
-    }
+    },
+    selectedTag: (state) => state.selectedTag,
   },
   actions: {
     setSelectedBlockSortArea({ commit, rootState }, area) {
       commit('SET_SELECTED_BLOCK_SORT_AREA', area)
+    },
+    setSelectedTag({ commit }, tag) {
+      commit('SET_SELECTED_TAG', tag)
     },
   },
   modules: {

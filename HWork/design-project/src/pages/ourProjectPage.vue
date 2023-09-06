@@ -5,8 +5,8 @@
             <div class="articles__wrap">
                 <h2 class="heading m-b-12">Our Project</h2>
                 <div class="breadcrump">
-                    <a href="../index.html" class="breadcrump__item">Home</a>
-                    <a href="#" class="breadcrump__item">Project</a>
+                    <router-link to="/" class="breadcrump__item">Home</router-link>
+                    <router-link to="/project" class="breadcrump__item">Project</router-link>
                 </div>
             </div>
         </section>

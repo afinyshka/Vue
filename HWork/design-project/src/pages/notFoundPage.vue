@@ -74,6 +74,10 @@ export default {
         line-height: 2.25rem
         letter-spacing: 0.036rem
         text-decoration: none
+        transition: all 0.3s ease-in-out
+        &:hover
+            transform: scale(1.02)
+            box-shadow: 0.7rem 0.7rem 1.3rem 0rem #4d5053a8
     &__right
         border-bottom-left-radius: 35rem
         height: 100%

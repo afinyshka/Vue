@@ -3,7 +3,7 @@
     <h3 class="subheading m-b-24">Tags</h3>
     <div class="tags">
       <button v-for="btnTag in btnTags" :key="btnTag.id" class="subtext tags__btn" @click="selectTag(btnTag)"
-        :class="{ 'tags__btn_active': selectedTag === btnTag }"> {{ btnTag }}</button>
+        :class="{ 'tags__btn_active': isSelected(btnTag) }"> {{ btnTag }}</button>
     </div>
   </div>
 </template>
@@ -15,18 +15,24 @@ export default {
   },
   data() {
     return {
-      btnTags: ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom'],
+      // btnTags: ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom'],
       // selectedTag: null,
     }
   },
   methods: {
     selectTag(tag) {
-      this.selectedTag = tag === this.selectedTag ? null : tag
-      this.$emit('tagSelected', tag)
+      this.$store.dispatch('setSelectedTag', tag)
+    },
+    isSelected(tag) {
+      return this.$store.getters.selectedTag === tag
     },
   },
 
   computed: {
+    btnTags() {
+      // Здесь можно получить теги из вашего хранилища или другого источника данных
+      return ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom']
+    },
   }
 }
 </script>

@@ -3,7 +3,7 @@
         <img src="@/assets/image/Photo-blog-details.png" alt="interior photo" class="articles__img">
     </section>
     <section class="info-articles center m-b-96">
-        <tagButtons :selectedTag="selectedTag" @tagSelected="handleTagSelected" />
+        <tagButtons />
         <div class="info-articles__main">
             <h2 class="heading heading_left m-b-12">Let’s Get Solution for Building
                 Construction Work</h2>
@@ -11,10 +11,10 @@
             <div class="date-breadcrumps  m-b-48">
                 <p class="date-text">26 December,2022 </p>
                 <div class="breadcrumps">
-                    <a href="#" class=" 
-                        breadcrump__item breadcrump__item_small">Interior</a>
-                    <a href="../index.html" class="breadcrump__item breadcrump__item_small">Home</a>
-                    <a href="#" class="breadcrump__item breadcrump__item_small">Decore</a>
+                    <router-link to="/blog" class=" 
+                        breadcrump__item breadcrump__item_small">Interior</router-link>
+                    <router-link to="/" class="breadcrump__item breadcrump__item_small">Home</router-link>
+                    <router-link to="/project-details" class="breadcrump__item breadcrump__item_small">Decore</router-link>
                 </div>
             </div>
             <p class="subtext m-b-35">Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae
@@ -63,9 +63,6 @@ export default {
     components: {
         tagButtons,
     },
-    // props: {
-    //     selectedTag: String,
-    // },
     data() {
         return {
             articles: [
@@ -124,11 +121,14 @@ export default {
                     tags: ['Bedroom'],
                 },
             ],
-            selectedTag: null,
         }
     },
     computed: {
+        selectedTag() {
+            return this.$store.getters.selectedTag
+        },
         filteredArticles() {
+            const selectedTag = this.selectedTag
             if (!this.selectedTag) {
                 return this.articles
             }
@@ -136,9 +136,6 @@ export default {
         },
     },
     methods: {
-        handleTagSelected(tag) {
-            this.selectedTag = tag === this.selectedTag ? null : tag
-        },
     },
 }
 </script>
