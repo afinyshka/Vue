@@ -8,7 +8,7 @@
       </svg></button>
 
     <router-link class="pagination__page-num" v-for="pageNumber in totalPages" :key="pageNumber"
-      :to="getPageLink(pageNumber)" :class="{ 'pagination__page-num_active': setCurrentPage === pageNumber }">
+      :to="getPageLink(pageNumber)" :class="{ 'pagination__page-num_active': currentPage === pageNumber }">
       {{ pageNumber }}
     </router-link>
 

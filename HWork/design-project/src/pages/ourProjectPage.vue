@@ -151,14 +151,19 @@ export default {
         flex-direction: column
         gap: 2rem
         max-height: 931rem
+        max-height: 160rem
         &_bathroom
             max-height: 226rem
+            max-height: 130rem
         &_kitchen
             max-height: 205rem
+            max-height: 130rem
         &_bedroom
             max-height: 321rem 
+            max-height: 160rem 
         &_livingarea
             max-height: 205rem 
+            max-height: 130rem 
     &__item
         flex: 0 0 auto
         position: relative
