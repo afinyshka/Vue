@@ -7,8 +7,9 @@
           stroke-linejoin="round" />
       </svg></button>
 
-    <router-link class="pagination__page-num" v-for="pageNumber in totalPages" :key="pageNumber"
-      :to="getPageLink(pageNumber)" :class="{ 'pagination__page-num_active': currentPage === pageNumber }">
+    <router-link @click="thisPage(pageNumber)" class="pagination__page-num" v-for="pageNumber in totalPages"
+      :key="pageNumber" :to="getPageLink(pageNumber)"
+      :class="{ 'pagination__page-num_active': currentPage === pageNumber }">
       {{ pageNumber }}
     </router-link>
 
@@ -24,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { createLogger, mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   props: {
@@ -44,6 +45,10 @@ export default {
       if (this.currentPage > 1) {
         this.setCurrentPage(this.currentPage - 1);
       }
+    },
+    thisPage(pageNumber) {
+      this.setCurrentPage(pageNumber)
+      console.log(this.currentPage, pageNumber)
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
