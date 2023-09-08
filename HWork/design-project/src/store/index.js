@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
 
-const mutations = {
-  setExtraProjectCardClass(state, payload) {
-    state.extraProjectCardClasses = payload;
-  }
-};
+// const mutations = {
+//   setExtraProjectCardClass(state, payload) {
+//     state.extraProjectCardClasses = payload
+//   }
+// }
 
 export default createStore({
   state: {
@@ -228,6 +228,8 @@ export default createStore({
       },
     ],
     selectedTag: null,
+    currentPage: 1, // Текущая страница
+    cardsPerPage: 4, // Количество карточек на странице
   },
   mutations: {
     SET_SELECTED_BLOCK_SORT_AREA(state, area) {
@@ -239,6 +241,9 @@ export default createStore({
     SET_SELECTED_TAG(state, tag) {
       state.selectedTag = tag
     },
+    SET_CURRENT_PAGE(state, page) {
+      state.currentPage = page
+    },
   },
   getters: {
     getFilteredCards: state => {
@@ -247,14 +252,26 @@ export default createStore({
       }
       return state.cards.filter(card => card.tag.includes(state.selectedBlockSortArea))
     },
+    totalPages: (state, getters) => {
+      return Math.ceil(getters.getFilteredCards.length / state.cardsPerPage)
+    },
+    displayedCards: (state, getters) => {
+      // Рассчитайте, какие карточки отображать на текущей странице
+      const startIndex = (state.currentPage - 1) * state.cardsPerPage;
+      const endIndex = startIndex + state.cardsPerPage;
+      return getters.getFilteredCards.slice(startIndex, endIndex);
+    },
     selectedTag: (state) => state.selectedTag,
   },
   actions: {
-    setSelectedBlockSortArea({ commit, rootState }, area) {
+    setSelectedBlockSortArea({ commit }, area) {
       commit('SET_SELECTED_BLOCK_SORT_AREA', area)
     },
     setSelectedTag({ commit }, tag) {
       commit('SET_SELECTED_TAG', tag)
+    },
+    setCurrentPage(context, page) {
+      context.commit('SET_CURRENT_PAGE', page)
     },
   },
   modules: {

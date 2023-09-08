@@ -40,8 +40,6 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/zoom'
 
-// import './style.css'
-
 import { Zoom, Navigation, Pagination } from 'swiper/modules'
 
 export default {

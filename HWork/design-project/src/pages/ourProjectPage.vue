@@ -22,7 +22,7 @@
         </div>
         <div class="project-card center m-b-61">
             <div class="project-card__wrap" :class="extraProjectCardClasses">
-                <div v-for="card in getFilteredCards" :key="card.id" class="project-card__item">
+                <div v-for="card in displayedCards" :key="card.id" class="project-card__item">
                     <img :src="require(`@/assets/${card.img}`)" alt="interior" class="project-card__img">
                     <h3 class="project-card__subheading">{{ card.title }}</h3>
                     <p class="project-card__text">{{ card.text }}</p>
@@ -38,39 +38,40 @@
 
         </div>
         <paginationComponent class="center m-b-200" />
+
     </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions, createLogger } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
+
 import paginationComponent from '../components/paginationComponent.vue'
 
 export default {
+    data() {
+        return {
+        }
+    },
     components: {
         paginationComponent,
     },
-    data() {
-        return {
-
-        }
-    },
     computed: {
-        ...mapGetters(['getFilteredCards']),
-        ...mapState(['selectedBlockSortArea', 'cards', 'blockSortAreas', 'extraProjectCardClasses']),
+        ...mapState(['selectedBlockSortArea', 'cards', 'blockSortAreas', 'extraProjectCardClasses'], ['currentPage']),
+        ...mapGetters(['getFilteredCards', 'displayedCards'], ['cardsPerPage'])
     },
     methods: {
         ...mapActions(['setSelectedBlockSortArea']),
         handleBlockSortAreaSelected(blockSortArea) {
             this.setSelectedBlockSortArea(blockSortArea)
-            console.log(blockSortArea)
             const newClasses = {
                 ...this.extraProjectCardClasses,
                 'project-card__wrap_bathroom': blockSortArea === 'Bathroom',
                 'project-card__wrap_kitchen': blockSortArea === 'Kitchen',
                 'project-card__wrap_bedroom': blockSortArea === 'Bed Room',
-                'project-card__wrap_livingarea': blockSortArea === 'Living Area'
-            }
+                'project-card__wrap_livingarea': blockSortArea === 'Living Area',
+            };
             this.$store.commit('SET_ExtraProjectCardClass', newClasses)
+            this.$router.push(`/project/${this.currentPage}`)
         },
     },
 }
@@ -144,20 +145,12 @@ export default {
             background: #CDA274 
 
 .project-card
-    // display: flex
-    // flex-wrap: wrap
-    // flex-direction: column
-    // gap: 2rem
-    // height: 321rem
-    // overflow-x: hidden
     &__wrap
         display: flex
         flex-wrap: wrap
         flex-direction: column
         gap: 2rem
         max-height: 931rem
-        // overflow-x: hidden
-        // overflow-y: scroll
         &_bathroom
             max-height: 226rem
         &_kitchen
@@ -201,4 +194,7 @@ export default {
         position: absolute
         right: 0
         bottom: 0
+        &:hover
+            transform: scale(1.1)
+
 </style>

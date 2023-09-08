@@ -6,11 +6,7 @@
                 Be Unique</h1>
             <p class="intro__text">There are many variations of the passages of
                 lorem Ipsum fromavailable, majority.</p>
-            <router-link :to="{ path: '/', hash: '#my-section' }" class="intro__btn" v-scroll-to="'#my-section'">Get Started
-                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17" fill="none">
-                    <path d="M2 8.43542L15.7232 8.29857M10.6182 1.91138L17.1412 8.43436L10.4868 15.0887" stroke="#CDA274"
-                        stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
-                </svg></router-link>
+            <buttonComponent :buttonLabel="buttonLabel" :buttonLink="buttonLink" v-scroll-to="'#my-section'" />
         </div>
     </section>
     <section id="my-section" class="project center m-b-96">
@@ -77,8 +73,22 @@
 </template>
 
 <script>
-export default {
+import buttonComponent from '../components/buttonComponent.vue'
 
+export default {
+    props: {
+        buttonLabel: {
+            type: String,
+            default: 'Get Started',
+        },
+        buttonLink: {
+            type: String,
+            default: "/#my-section",
+        },
+    },
+    components: {
+        buttonComponent,
+    },
     data() {
         return {
             projectCards: [

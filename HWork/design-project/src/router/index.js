@@ -5,6 +5,7 @@ import blogPage from '@/pages/blogPage.vue'
 import ourProjectPage from '@/pages/ourProjectPage.vue'
 import projectDetailsPage from '@/pages/projectDetailsPage.vue'
 import notFoundPage from '@/pages/notFoundPage.vue'
+// import paginationComponent from '@/components/paginationComponent.vue'
 
 const routes = [
     {
@@ -18,10 +19,15 @@ const routes = [
         component: blogPage
     },
     {
-        path: '/project',
+        path: '/project/:pageNumber?',
         name: 'Project',
         component: ourProjectPage
     },
+    // {
+    //     path: '/project/:pageNumber',
+    //     name: 'PaginationComponent',
+    //     component: paginationComponent,
+    // },
     {
         path: '/blog-details',
         name: 'Blog-details',
@@ -40,7 +46,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(process.env.BASE_URL),
     routes
 })
 

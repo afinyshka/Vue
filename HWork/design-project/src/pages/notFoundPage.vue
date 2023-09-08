@@ -5,11 +5,7 @@
                 <h3 class="not-found__head">404</h3>
                 <p class="not-found__text">We are sorry, but the page
                     you requested was not found</p>
-                <router-link class="not-found__btn" to="/">Back To Home <svg xmlns="http://www.w3.org/2000/svg" width="18"
-                        height="17" viewBox="0 0 18 17" fill="none">
-                        <path d="M1.85938 8.43542L15.5826 8.29857M10.4776 1.91138L17.0005 8.43436L10.3461 15.0887"
-                            stroke="#CDA274" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
-                    </svg></router-link>
+                <buttonComponent :buttonLabel="buttonLabel" :buttonLink="buttonLink" />
             </div>
             <div class="not-found__right">
                 <img src="@/assets/image/Photo_not_found.png" alt="not found" class="not-found__img">
@@ -19,7 +15,23 @@
 </template>
 
 <script>
+import buttonComponent from '../components/buttonComponent.vue'
+
 export default {
+    props: {
+        buttonLabel: {
+            type: String,
+            default: 'Back To Home',
+        },
+        buttonLink: {
+            type: String,
+            default: '/',
+        },
+    },
+
+    components: {
+        buttonComponent,
+    },
 
 }
 </script>
@@ -54,30 +66,6 @@ export default {
         line-height: 5.25rem
         letter-spacing: 0.035rem
         max-width: 60rem
-
-    &__btn
-        display: flex
-        padding: 2.6rem 5.4rem
-        justify-content: center
-        align-items: center
-        gap: 1rem
-        border-radius: 1.8rem
-        background: #292F36
-        box-shadow: 0rem 1rem 2rem 0rem rgba(192, 192, 192, 0.35)
-
-        color: #FFF
-        text-align: center
-        font-family: Jost
-        font-size: 1.8rem
-        font-style: normal
-        font-weight: 600
-        line-height: 2.25rem
-        letter-spacing: 0.036rem
-        text-decoration: none
-        transition: all 0.3s ease-in-out
-        &:hover
-            transform: scale(1.02)
-            box-shadow: 0.7rem 0.7rem 1.3rem 0rem #4d5053a8
     &__right
         border-bottom-left-radius: 35rem
         height: 100%

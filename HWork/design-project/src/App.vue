@@ -1,11 +1,5 @@
 <template>
     <headerComponent />
-    <!-- <blogDetailsPage />
-    <blogPage />
-    <indexPage />
-    <ourProjectPage />
-    <projectDetailsPage />
-    <notFoundPage /> -->
     <router-view />
     <footerComponent />
 </template>
@@ -13,23 +7,11 @@
 <script>
 import headerComponent from './components/headerComponent.vue'
 import footerComponent from './components/footerComponent.vue'
-// import blogDetailsPage from './pages/blogDetailsPage.vue'
-// import blogPage from './pages/blogPage.vue'
-// import indexPage from './pages/indexPage.vue'
-// import ourProjectPage from './pages/ourProjectPage.vue'
-// import projectDetailsPage from './pages/projectDetailsPage.vue'
-// import notFoundPage from './pages/notFoundPage.vue'
 
 export default {
     name: 'App',
     components: {
         headerComponent,
-        // blogDetailsPage,
-        // blogPage,
-        // indexPage,
-        // ourProjectPage,
-        // projectDetailsPage,
-        // notFoundPage,
         footerComponent
     }
 }
