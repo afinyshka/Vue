@@ -15,8 +15,6 @@ export default {
   },
   data() {
     return {
-      // btnTags: ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom'],
-      // selectedTag: null,
     }
   },
   methods: {

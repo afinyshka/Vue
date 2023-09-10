@@ -1,10 +1,5 @@
-import { createStore } from 'vuex'
+import { createLogger, createStore } from 'vuex'
 
-// const mutations = {
-//   setExtraProjectCardClass(state, payload) {
-//     state.extraProjectCardClasses = payload
-//   }
-// }
 
 export default createStore({
   state: {
@@ -230,6 +225,8 @@ export default createStore({
     selectedTag: null,
     currentPage: 1, // Текущая страница
     cardsPerPage: 4, // Количество карточек на странице
+    startIndex: 0,
+    endIndex: 0,
   },
   mutations: {
     SET_SELECTED_BLOCK_SORT_AREA(state, area) {
@@ -256,10 +253,11 @@ export default createStore({
       return Math.ceil(getters.getFilteredCards.length / state.cardsPerPage)
     },
     displayedCards: (state, getters) => {
-      // Рассчитайте, какие карточки отображать на текущей странице
-      const startIndex = (state.currentPage - 1) * state.cardsPerPage;
-      const endIndex = startIndex + state.cardsPerPage;
-      return getters.getFilteredCards.slice(startIndex, endIndex);
+      state.startIndex = (state.currentPage - 1) * state.cardsPerPage
+      state.endIndex = state.startIndex + state.cardsPerPage
+      console.log('startIndex', state.startIndex, 'endIndex', state.endIndex)
+      console.log('currentpage', state.currentPage)
+      return getters.getFilteredCards.slice(state.startIndex, state.endIndex)
     },
     selectedTag: (state) => state.selectedTag,
   },
@@ -270,8 +268,8 @@ export default createStore({
     setSelectedTag({ commit }, tag) {
       commit('SET_SELECTED_TAG', tag)
     },
-    setCurrentPage(context, page) {
-      context.commit('SET_CURRENT_PAGE', page)
+    setCurrentPage({ commit }, page) {
+      commit('SET_CURRENT_PAGE', page)
     },
   },
   modules: {

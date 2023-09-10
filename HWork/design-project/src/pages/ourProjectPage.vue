@@ -56,12 +56,27 @@ export default {
         paginationComponent,
     },
     computed: {
-        ...mapState(['selectedBlockSortArea', 'cards', 'blockSortAreas', 'extraProjectCardClasses'], ['currentPage']),
-        ...mapGetters(['getFilteredCards', 'displayedCards'], ['cardsPerPage'])
+        ...mapState(['selectedBlockSortArea', 'cards', 'blockSortAreas', 'extraProjectCardClasses']),
+        currentPage() {
+            return this.$store.state.currentPage; // Access currentPage directly
+        },
+        // startIndex() {
+        //     return this.$store.state.startIndex; // Access startIndex directly
+        // },
+        // endIndex() {
+        //     return this.$store.state.endIndex; // Access endIndex directly
+        // },
+        // cardsPerPage() {
+        //     return this.$store.state.cardsPerPage; // Access cardsPerPage directly
+        // },
+        ...mapGetters(['getFilteredCards', 'displayedCards'])
     },
     methods: {
-        ...mapActions(['setSelectedBlockSortArea']),
+        ...mapActions(['setSelectedBlockSortArea', 'setCurrentPage']),
         handleBlockSortAreaSelected(blockSortArea) {
+            this.setCurrentPage(1)
+            console.log('currentPage', this.currentPage)
+            console.log('startIndexXX', this.startIndex, 'endIndex', this.endIndex)
             this.setSelectedBlockSortArea(blockSortArea)
             const newClasses = {
                 ...this.extraProjectCardClasses,

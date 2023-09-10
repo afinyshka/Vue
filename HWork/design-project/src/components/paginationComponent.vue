@@ -1,11 +1,11 @@
 <template>
   <div v-if="totalPages > 1" class="pagination">
-    <button @click="prevPage" :disabled="currentPage === 1" class="pagination__prev-btn">
+    <router-link @click="prevPage" :disabled="currentPage === 1" class="pagination__prev-btn" :to="getPageLinkPrev()">
       <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
         <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274" />
         <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="#292F36" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" />
-      </svg></button>
+      </svg></router-link>
 
     <router-link @click="thisPage(pageNumber)" class="pagination__page-num" v-for="pageNumber in totalPages"
       :key="pageNumber" :to="getPageLink(pageNumber)"
@@ -13,19 +13,20 @@
       {{ pageNumber }}
     </router-link>
 
-    <button @click="nextPage" :disabled="currentPage === totalPages" class="pagination__next-btn"><svg
-        xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
+    <router-link @click="nextPage" :disabled="currentPage === totalPages" class="pagination__next-btn"
+      :to="getPageLinkNext()"><svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52"
+        fill="none">
         <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274" />
         <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="#292F36" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" />
-      </svg></button>
+      </svg></router-link>
 
 
   </div>
 </template>
 
 <script>
-import { createLogger, mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   props: {
@@ -33,6 +34,7 @@ export default {
   },
   data() {
     return {
+      pageNumber: 1,
     }
   },
   computed: {
@@ -40,7 +42,7 @@ export default {
     ...mapGetters(['totalPages']),
   },
   methods: {
-    ...mapActions(['setCurrentPage',]),
+    ...mapActions(['setCurrentPage']),
     prevPage() {
       if (this.currentPage > 1) {
         this.setCurrentPage(this.currentPage - 1);
@@ -48,7 +50,7 @@ export default {
     },
     thisPage(pageNumber) {
       this.setCurrentPage(pageNumber)
-      console.log(this.currentPage, pageNumber)
+      console.log('currentPage', this.currentPage, 'pageNumber', pageNumber)
     },
     nextPage() {
       if (this.currentPage < this.totalPages) {
@@ -56,10 +58,17 @@ export default {
       }
     },
     getPageLink(pageNumber) {
-      return `/project/${pageNumber}`;
+      return `/project/${pageNumber}`
+    },
+    getPageLinkPrev() {
+      return `/project/${this.currentPage - 1}`
+    },
+    getPageLinkNext() {
+      return `/project/${this.currentPage + 1}`
     },
   },
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
