@@ -76,15 +76,29 @@ export default {
         ...mapActions(['setSelectedBlockSortArea', 'setCurrentPage', 'setPageKey', 'setCardsPerPage']),
         handleBlockSortAreaSelected(blockSortArea) {
             this.setCurrentPage(1)
-            this.setSelectedBlockSortArea(blockSortArea)
-            const newClasses = {
-                ...this.extraProjectCardClasses,
-                'project-card__wrap_bathroom': blockSortArea === 'Bathroom',
-                'project-card__wrap_kitchen': blockSortArea === 'Kitchen',
-                'project-card__wrap_bedroom': blockSortArea === 'Bed Room',
-                'project-card__wrap_livingarea': blockSortArea === 'Living Area',
+            if (blockSortArea === this.selectedBlockSortArea) {
+                this.setSelectedBlockSortArea(null)
+                // Удалить дополнительные классы, связанные с тегом:
+                const newClasses = {
+                    ...this.extraProjectCardClasses,
+                    'project-card__wrap_bathroom': false,
+                    'project-card__wrap_kitchen': false,
+                    'project-card__wrap_bedroom': false,
+                    'project-card__wrap_livingarea': false,
+                }
+                this.$store.commit('SET_ExtraProjectCardClass', newClasses)
+            } else {
+                this.setSelectedBlockSortArea(blockSortArea)
+
+                const newClasses = {
+                    ...this.extraProjectCardClasses,
+                    'project-card__wrap_bathroom': blockSortArea === 'Bathroom',
+                    'project-card__wrap_kitchen': blockSortArea === 'Kitchen',
+                    'project-card__wrap_bedroom': blockSortArea === 'Bed Room',
+                    'project-card__wrap_livingarea': blockSortArea === 'Living Area',
+                }
+                this.$store.commit('SET_ExtraProjectCardClass', newClasses)
             }
-            this.$store.commit('SET_ExtraProjectCardClass', newClasses)
             this.$router.push(`/${this.pageKey}/${this.currentPage}`)
         },
     },
