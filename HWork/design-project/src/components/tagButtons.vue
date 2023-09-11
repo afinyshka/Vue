@@ -29,7 +29,7 @@ export default {
   computed: {
     btnTags() {
       // Здесь можно получить теги из вашего хранилища или другого источника данных
-      return ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning', 'Bedroom']
+      return ['Kitchen', 'Bedroom', 'Building', 'Architecture', 'Kitchen Planning']
     },
   }
 }

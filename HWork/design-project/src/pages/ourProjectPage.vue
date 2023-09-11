@@ -48,35 +48,34 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import paginationComponent from '../components/paginationComponent.vue'
 
 export default {
+    props: {
+    },
     data() {
         return {
+            pageKey: 'project',
+            cardsPerPage: 4,
         }
     },
     components: {
         paginationComponent,
     },
     computed: {
-        ...mapState(['selectedBlockSortArea', 'cards', 'blockSortAreas', 'extraProjectCardClasses']),
+        ...mapState(['selectedBlockSortArea', 'blockSortAreas', 'extraProjectCardClasses']),
         currentPage() {
-            return this.$store.state.currentPage; // Access currentPage directly
+            return this.$store.state.currentPage
+            // Access currentPage directly
         },
-        // startIndex() {
-        //     return this.$store.state.startIndex; // Access startIndex directly
-        // },
-        // endIndex() {
-        //     return this.$store.state.endIndex; // Access endIndex directly
-        // },
-        // cardsPerPage() {
-        //     return this.$store.state.cardsPerPage; // Access cardsPerPage directly
-        // },
-        ...mapGetters(['getFilteredCards', 'displayedCards'])
+        ...mapGetters(['displayedCards'])
+    },
+    created() {
+        // Используйем Vuex для установки значения pageKey cardsPerPage
+        this.setPageKey(this.pageKey)
+        this.setCardsPerPage(this.cardsPerPage)
     },
     methods: {
-        ...mapActions(['setSelectedBlockSortArea', 'setCurrentPage']),
+        ...mapActions(['setSelectedBlockSortArea', 'setCurrentPage', 'setPageKey', 'setCardsPerPage']),
         handleBlockSortAreaSelected(blockSortArea) {
             this.setCurrentPage(1)
-            console.log('currentPage', this.currentPage)
-            console.log('startIndexXX', this.startIndex, 'endIndex', this.endIndex)
             this.setSelectedBlockSortArea(blockSortArea)
             const newClasses = {
                 ...this.extraProjectCardClasses,
@@ -84,9 +83,9 @@ export default {
                 'project-card__wrap_kitchen': blockSortArea === 'Kitchen',
                 'project-card__wrap_bedroom': blockSortArea === 'Bed Room',
                 'project-card__wrap_livingarea': blockSortArea === 'Living Area',
-            };
+            }
             this.$store.commit('SET_ExtraProjectCardClass', newClasses)
-            this.$router.push(`/project/${this.currentPage}`)
+            this.$router.push(`/${this.pageKey}/${this.currentPage}`)
         },
     },
 }
@@ -149,8 +148,7 @@ export default {
         border: 1px solid #CDA274
         border-radius: 1.8rem
         width: 88rem
-    &__btn
-        // flex: 1   
+    &__btn 
         padding: 2.6rem 6.6rem
         flex-shrink: 0
         border-radius: 2rem
@@ -165,19 +163,14 @@ export default {
         flex-wrap: wrap
         flex-direction: column
         gap: 2rem
-        // max-height: 931rem
         max-height: 160rem
         &_bathroom
-            // max-height: 226rem
             max-height: 130rem
         &_kitchen
-            // max-height: 205rem
             max-height: 130rem
         &_bedroom
-            // max-height: 321rem 
             max-height: 160rem 
         &_livingarea
-            // max-height: 205rem 
             max-height: 130rem 
     &__item
         flex: 0 0 auto

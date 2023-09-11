@@ -36,7 +36,7 @@
     <section class="news center m-b-50">
         <h2 class="heading heading_left m-b-30">Articles & News</h2>
         <div class="news__cards">
-            <div v-for="newsCard in newsCards" :key="newsCard.id" class="news-card">
+            <div v-for="newsCard in displayedCards" :key="newsCard.id" class="news-card">
                 <img :src="require(`@/assets/${newsCard.img}`)" alt="interior" class="news-card__img">
                 <h3 class="news-card__subheading"> {{ newsCard.header }} </h3>
                 <p class="date-text">{{ newsCard.date }}</p>
@@ -55,45 +55,37 @@
 <script>
 import paginationComponent from '../components/paginationComponent.vue'
 
+import { mapActions, mapGetters, mapState } from 'vuex'
+
 export default {
+
     components: {
         paginationComponent,
     },
     data() {
         return {
-            newsCards: [
-                {
-                    img: 'image/Photo_articles_1.png',
-                    header: 'Let’s Get Solution For Building Construction Work',
-                    date: '26 December, 2022',
-                },
-                {
-                    img: 'image/Photo_articles_2.png',
-                    header: 'Low Cost Latest Invented Interior Designing Ideas.',
-                    date: '22 December, 2022',
-                },
-                {
-                    img: 'image/Photo_articles_3.png',
-                    header: 'Best For Any Office & Business Interior Solution',
-                    date: '25 December, 2022',
-                },
-                {
-                    img: 'image/Photo_articles_4.png',
-                    header: 'Let’s Get Solution For Building Construction Work',
-                    date: '26 December, 2022',
-                },
-                {
-                    img: 'image/Photo_articles_5.png',
-                    header: 'Low Cost Latest Invented Interior Designing Ideas.',
-                    date: '22 December, 2022',
-                },
-                {
-                    img: 'image/Photo_articles_6.png',
-                    header: 'Best For Any Office & Business Interior Solution',
-                    date: '25 December, 2022',
-                },
-            ]
+            pageKey: 'blog',
+            cardsPerPage: 6,
         }
+    },
+    computed: {
+        // ...mapState(['newsCards']),
+        currentPage() {
+            return this.$store.state.currentPage
+            // Access currentPage directly
+        },
+        ...mapGetters(['displayedCards'])
+    },
+    created() {
+        // Используйте Vuex для установки значения pageKey cardsPerPage
+        this.setPageKey(this.pageKey)
+        this.setCardsPerPage(this.cardsPerPage)
+    },
+    methods: {
+        ...mapActions(['setCurrentPage', 'setPageKey', 'setCardsPerPage']),
+    },
+    mounted() {
+        this.setCurrentPage(1)
     },
 }
 
@@ -105,10 +97,7 @@ export default {
     &__img
         width: 100vw
     &__wrap
-        // width: 50.3rem
-        // height: 17.8rem
         border-radius: 3.7rem 3.7rem 0rem 0rem
-        // box-sizing: border-box
         padding: 4.1rem 7.8rem
         text-align: center
         background: #FFF
@@ -199,8 +188,6 @@ export default {
         transition: transform 0.3s ease-in-out
         &:hover
             transform: scale(1.1)
-
-            
 
 .pagination
     display: flex

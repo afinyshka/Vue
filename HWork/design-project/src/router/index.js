@@ -14,7 +14,7 @@ const routes = [
         component: indexPage
     },
     {
-        path: '/blog',
+        path: '/blog/:pageNumber?',
         name: 'Blog',
         component: blogPage
     },

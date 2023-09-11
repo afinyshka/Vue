@@ -29,9 +29,6 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
-  props: {
-    msg: String
-  },
   data() {
     return {
       pageNumber: 1,
@@ -40,9 +37,15 @@ export default {
   computed: {
     ...mapState(['currentPage']),
     ...mapGetters(['totalPages']),
+    pageKey() {
+      return this.$store.state.pageKey
+    },
+    cardsPerPage() {
+      return this.$store.state.cardsPerPage
+    },
   },
   methods: {
-    ...mapActions(['setCurrentPage']),
+    ...mapActions(['setCurrentPage', 'setPageKey', 'setCardsPerPage']),
     prevPage() {
       if (this.currentPage > 1) {
         this.setCurrentPage(this.currentPage - 1);
@@ -58,14 +61,34 @@ export default {
       }
     },
     getPageLink(pageNumber) {
-      return `/project/${pageNumber}`
+      return `/${this.pageKey}/${pageNumber}`
     },
     getPageLinkPrev() {
-      return `/project/${this.currentPage - 1}`
+      if (this.currentPage > 1) {
+        return `/${this.pageKey}/${this.currentPage - 1}`
+      }
+      return `/${this.pageKey}/1`
     },
     getPageLinkNext() {
-      return `/project/${this.currentPage + 1}`
+      if (this.currentPage < this.totalPages) {
+        return `/${this.pageKey}/${this.currentPage + 1}`
+      }
+      return `/${this.pageKey}/${this.totalPages}`
     },
+    updatePageKey() {
+      // Вызывайте действие для обновления значения в store
+      this.setPageKey(this.pageKey)
+    },
+    updateCardsPerPage() {
+      // Вызывайте действие для обновления значения в store
+      this.setCardsPerPage(this.cardsPerPage)
+    },
+  },
+  mounted() {
+    // Вызываем метод для обновления pageKey и cardsPerPage в store
+    this.updatePageKey()
+    this.updateCardsPerPage()
+
   },
 }
 

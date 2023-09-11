@@ -205,6 +205,63 @@ export default createStore({
         tag: 'Living Area',
       },
     ],
+    newsCards: [
+      {
+        img: 'image/Photo_articles_1.png',
+        header: 'Let’s Get Solution For Building Construction Work',
+        date: '26 December, 2022',
+      },
+      {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      },
+      {
+        img: 'image/Photo_articles_3.png',
+        header: 'Best For Any Office & Business Interior Solution',
+        date: '25 December, 2022',
+      },
+      {
+        img: 'image/Photo_articles_4.png',
+        header: 'Let’s Get Solution For Building Construction Work',
+        date: '26 December, 2022',
+      },
+      {
+        img: 'image/Photo_articles_5.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      },
+      {
+        img: 'image/Photo_articles_6.png',
+        header: 'Best For Any Office & Business Interior Solution',
+        date: '25 December, 2022',
+      },
+      {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      }, {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      }, {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      }, {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      }, {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      }, {
+        img: 'image/Photo_articles_2.png',
+        header: 'Low Cost Latest Invented Interior Designing Ideas.',
+        date: '22 December, 2022',
+      },
+    ],
     headerLinks: [
       {
         id: 1,
@@ -224,9 +281,10 @@ export default createStore({
     ],
     selectedTag: null,
     currentPage: 1, // Текущая страница
-    cardsPerPage: 4, // Количество карточек на странице
+    cardsPerPage: Number, // Количество карточек на странице
     startIndex: 0,
     endIndex: 0,
+    pageKey: '',
   },
   mutations: {
     SET_SELECTED_BLOCK_SORT_AREA(state, area) {
@@ -241,6 +299,12 @@ export default createStore({
     SET_CURRENT_PAGE(state, page) {
       state.currentPage = page
     },
+    SET_PAGE_KEY(state, newPageKey) {
+      state.pageKey = newPageKey;
+    },
+    SET_CARDS_PER_PAGE(state, newCardsPerPage) {
+      state.cardsPerPage = newCardsPerPage
+    },
   },
   getters: {
     getFilteredCards: state => {
@@ -250,16 +314,31 @@ export default createStore({
       return state.cards.filter(card => card.tag.includes(state.selectedBlockSortArea))
     },
     totalPages: (state, getters) => {
-      return Math.ceil(getters.getFilteredCards.length / state.cardsPerPage)
+      if (state.pageKey === 'project') {
+        return Math.ceil(getters.getFilteredCards.length / state.cardsPerPage)
+      } else if (state.pageKey === 'blog') {
+        return Math.ceil(state.newsCards.length / state.cardsPerPage)
+      }
+
     },
     displayedCards: (state, getters) => {
       state.startIndex = (state.currentPage - 1) * state.cardsPerPage
       state.endIndex = state.startIndex + state.cardsPerPage
       console.log('startIndex', state.startIndex, 'endIndex', state.endIndex)
       console.log('currentpage', state.currentPage)
-      return getters.getFilteredCards.slice(state.startIndex, state.endIndex)
+      if (state.pageKey === 'project') {
+        return getters.getFilteredCards.slice(state.startIndex, state.endIndex)
+      } else if (state.pageKey === 'blog') {
+        return state.newsCards.slice(state.startIndex, state.endIndex)
+      }
     },
     selectedTag: (state) => state.selectedTag,
+    getPageKey(state) {
+      return state.pageKey
+    },
+    getCardsPerPage(state) {
+      return state.cardsPerPage
+    },
   },
   actions: {
     setSelectedBlockSortArea({ commit }, area) {
@@ -270,6 +349,12 @@ export default createStore({
     },
     setCurrentPage({ commit }, page) {
       commit('SET_CURRENT_PAGE', page)
+    },
+    setPageKey({ commit }, newPageKey) {
+      commit('SET_PAGE_KEY', newPageKey)
+    },
+    setCardsPerPage({ commit }, cards) {
+      commit('SET_CARDS_PER_PAGE', cards)
     },
   },
   modules: {
